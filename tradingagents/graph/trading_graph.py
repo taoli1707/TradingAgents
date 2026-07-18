@@ -159,10 +159,16 @@ class TradingAgentsGraph:
         return kwargs
 
     def _create_tool_nodes(self) -> dict[str, ToolNode]:
-        """Create tool nodes for different data sources using abstract methods."""
+        """Create tool nodes for different data sources using abstract methods.
+
+        ``handle_tool_errors=True`` converts tool exceptions (e.g. a vendor
+        needing an unset API key, a transient network failure) into error
+        ToolMessages the analyst can react to, instead of crashing the run.
+        """
         return {
             "market": ToolNode(
-                [
+                handle_tool_errors=True,
+                tools=[
                     # Core stock data tools
                     get_stock_data,
                     # Technical indicators
@@ -174,13 +180,15 @@ class TradingAgentsGraph:
                 ]
             ),
             "social": ToolNode(
-                [
+                handle_tool_errors=True,
+                tools=[
                     # News tools for social media analysis
                     get_news,
-                ]
+                ],
             ),
             "news": ToolNode(
-                [
+                handle_tool_errors=True,
+                tools=[
                     # News and insider information
                     get_news,
                     get_global_news,
@@ -190,13 +198,14 @@ class TradingAgentsGraph:
                 ]
             ),
             "fundamentals": ToolNode(
-                [
+                handle_tool_errors=True,
+                tools=[
                     # Fundamental analysis tools
                     get_fundamentals,
                     get_balance_sheet,
                     get_cashflow,
                     get_income_statement,
-                ]
+                ],
             ),
         }
 

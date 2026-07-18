@@ -31,6 +31,10 @@ def create_llm_client(
     # Native (non-OpenAI) APIs are matched first so their string check doesn't
     # import the OpenAI client. Everything else is OpenAI-compatible and routes
     # through the provider registry (single source of truth).
+    if provider_lower in ("claude_code", "claude-code"):
+        from .claude_code_client import ClaudeCodeClient
+        return ClaudeCodeClient(model, base_url, **kwargs)
+
     if provider_lower == "anthropic":
         from .anthropic_client import AnthropicClient
         return AnthropicClient(model, base_url, **kwargs)

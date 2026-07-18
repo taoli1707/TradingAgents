@@ -52,9 +52,13 @@ DEFAULT_CONFIG = _apply_env_overrides({
     # Pending entries are never pruned. None disables rotation entirely.
     "memory_log_max_entries": None,
     # LLM settings
-    "llm_provider": "openai",
-    "deep_think_llm": "gpt-5.5",
-    "quick_think_llm": "gpt-5.4-mini",
+    # Default: the keyless Claude Code file relay (see CLAUDE_RELAY.md).
+    # A Claude Code session serves every model call, so no API key is
+    # needed. Set TRADINGAGENTS_LLM_PROVIDER=openai (etc.) to use a
+    # hosted provider instead.
+    "llm_provider": "claude_code",
+    "deep_think_llm": "claude-code-relay",
+    "quick_think_llm": "claude-code-relay",
     # When None, each provider's client falls back to its own default endpoint
     # (api.openai.com for OpenAI, generativelanguage.googleapis.com for Gemini, ...).
     # The CLI overrides this per provider when the user picks one. Keeping a
