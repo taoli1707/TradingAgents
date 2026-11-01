@@ -4,6 +4,7 @@ from langchain_core.messages import HumanMessage, RemoveMessage
 from tradingagents.agents.utils.core_stock_tools import (
     get_stock_data
 )
+from tradingagents.agents.utils.pattern_tools import get_validated_patterns
 from tradingagents.agents.utils.technical_indicators_tools import (
     get_indicators
 )

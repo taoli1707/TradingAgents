@@ -32,4 +32,8 @@ dependencies = [
     "tushare>=1.4.21",
     "typing-extensions>=4.14.0",
     "yfinance>=0.2.63",
+    "scipy>=1.11",
+    "scikit-learn>=1.4",
+    "lightgbm>=4.0",
+    "pyarrow>=15.0",
 ]
