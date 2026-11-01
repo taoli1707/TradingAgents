@@ -24,3 +24,7 @@ rich
 questionary
 langchain_anthropic
 langchain-google-genai
+scipy
+scikit-learn
+lightgbm
+pyarrow
